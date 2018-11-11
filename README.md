@@ -44,10 +44,7 @@ java -jar target/closest-pair-identifier-1.1-SNAPSHOT-jar-with-dependencies.jar 
 ```
 
 Usage:
-<<<<<<< HEAD
 
-=======
->>>>>>> 19d4772ec90fe876a7dc4885a95539bb118c8446
 ```
 E.g.: java -cp mySolution.jar <input file path>
 ```
@@ -85,5 +82,5 @@ Give an example
 
 ## Authors
 
-* **Gyula Halmos** 
+* **Gyula Halmos**
 
