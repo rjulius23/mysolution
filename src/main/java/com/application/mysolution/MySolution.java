@@ -99,16 +99,16 @@ class MySolution{
           			//point2.printCoords();
           			//System.out.println("Point dist: "+distance);
           			//System.out.println("Stored dist: "+currDist);
-                if (distance < currDist){
-                  pair.removeAll(pair);
-                  pair.add(point1);
-                  pair.add(point2);                  
-                }
+                    if (distance < currDist){
+                       pair.removeAll(pair);
+                       pair.add(point1);
+                       pair.add(point2);                  
+                    }
         		}
       		}
     	}
-      //double currDist = pair.get(0).computeDistance(pair.get(1).getCoords());
-      //System.out.println(currDist);
+        //double currDist = pair.get(0).computeDistance(pair.get(1).getCoords());
+        //System.out.println(currDist);
     	return pair;
   	}
 
