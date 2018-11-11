@@ -102,7 +102,7 @@ class MySolution{
                   if (distance < currDist){
                        pair.removeAll(pair);
                        pair.add(point1);
-                       pair.add(point2);                  
+                       pair.add(point2);
                   }
         	  }
       	  }
