@@ -84,32 +84,32 @@ class MySolution{
     	  return null;
     	if (numPoints > 2)
     	{
-      	    for (int i = 0; i < numPoints - 1; i++){
-        		MultiDimPoint point1 = points.get(i);
-        		for (int j = i + 1; j < numPoints; j++){
-          			MultiDimPoint point2 = points.get(j);
-          			// Initialize the pair list
-          			if (pair.size() < 1){
+      	  for (int i = 0; i < numPoints - 1; i++){
+              MultiDimPoint point1 = points.get(i);
+        	  for (int j = i + 1; j < numPoints; j++){
+                  MultiDimPoint point2 = points.get(j);
+          		  // Initialize the pair list
+          		  if (pair.size() < 1){
           				pair.add(point1);
           				pair.add(point2);
-          			}
-          			double distance = point1.computeDistance(point2.getCoords());
-          			double currDist = pair.get(0).computeDistance(pair.get(1).getCoords());
-          			//point1.printCoords();
-          			//point2.printCoords();
-          			//System.out.println("Point dist: "+distance);
-          			//System.out.println("Stored dist: "+currDist);
-                    if (distance < currDist){
+          		  }
+          		  double distance = point1.computeDistance(point2.getCoords());
+          		  double currDist = pair.get(0).computeDistance(pair.get(1).getCoords());
+          		  //point1.printCoords();
+          		  //point2.printCoords();
+          		  //System.out.println("Point dist: "+distance);
+          		  //System.out.println("Stored dist: "+currDist);
+                  if (distance < currDist){
                        pair.removeAll(pair);
                        pair.add(point1);
                        pair.add(point2);                  
-                    }
-        		}
-      		}
+                  }
+        	  }
+      	  }
     	}
         //double currDist = pair.get(0).computeDistance(pair.get(1).getCoords());
         //System.out.println(currDist);
-    	return pair;
-  	}
+        return pair;
+    }
 
 }
