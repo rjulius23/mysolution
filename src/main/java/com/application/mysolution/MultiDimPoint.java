@@ -23,7 +23,14 @@ public class MultiDimPoint{
     }
 
     /**
-     * @return the the coords array
+     * @return the row number
+     */
+    public int getRowNum() {
+        return rowNum;
+    }
+
+    /**
+     * @return the coords array
      */
     public double[] getCoords() {
         return coords;

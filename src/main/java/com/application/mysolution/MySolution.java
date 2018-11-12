@@ -13,22 +13,51 @@ class MySolution{
 
     static void usage(){
     	System.out.println("Please provide an input file!");
-    	String msg = "E.g.: java -cp mySolution.jar <input file path>";
+    	String msg = "E.g.: java -cp mySolution.jar [test_func] | <input file path> [test_fileread]";
     	System.out.println(msg);
+      System.out.println("Possible options:");
+      msg = "test_func - test basic functionality during execution time with preset values";
+      System.out.println(msg);
+      msg = "test_fileread - print out the content of the input file";
+      System.out.println(msg);
     }
 
     public static void main(String[] args) {;
-    	ArrayList<MultiDimPoint> points;
+    	ArrayList<MultiDimPoint> points = new ArrayList<MultiDimPoint>();
+      Boolean test_func = false;
     	if (args.length > 0){
-    		String filename = args[0];
-    		points = readPointsFromFile(filename);
+        if (args[0].matches(".*test_func.*")){
+          double [] coordsA = new double[]{1.0, 1.0};
+          double [] coordsB = new double[]{0.0, 0.0};
+          double [] coordsC = new double[]{3.0, 3.0};
+          MultiDimPoint pointA = new MultiDimPoint(1, coordsA);
+          MultiDimPoint pointB = new MultiDimPoint(2, coordsB);
+          MultiDimPoint pointC = new MultiDimPoint(3, coordsC);
+          points.add(pointA);
+          points.add(pointB);
+          points.add(pointC);
+          test_func = true;
+        } else {
+          String filename = args[0];
+          points = readPointsFromFile(filename);
+        }
     		// Test case for file reading
-    		if (args.length > 1 && args[1] == "test_fileread"){
+    		if (args.length > 1 && args[1].matches(".*test_fileread.*")){
+          System.out.println("Test reading from file:");
     			for (MultiDimPoint point : points){
     				point.printCoords();
     			}
+          System.exit(0);
     		}
-    		calcMinDistance(points);
+    		ArrayList<MultiDimPoint> result = calcMinDistance(points);
+        if (test_func){
+          if (result.get(0).getRowNum() == 1 && result.get(1).getRowNum() == 2){
+            System.out.println("Test has passed successfully");
+          } else{
+            System.out.println("Test has FAILED!!! Result is incorrect!!");
+            System.exit(255);
+          }
+        }
     	} else{
     		usage();
     		System.exit(1);
@@ -67,14 +96,23 @@ class MySolution{
      * The function prints out the closest pairs.
      */
 
-    private static void calcMinDistance(ArrayList<MultiDimPoint> points){
+    private static ArrayList<MultiDimPoint> calcMinDistance(ArrayList<MultiDimPoint> points){
     	ArrayList<MultiDimPoint> closestPairs = bruteForce(points);
       // For Debug: System.out.println("Size of closestpairs "+closestPairs.size());
     	for (MultiDimPoint point : closestPairs){
     		point.printCoords();
     	}
 
+      return closestPairs;
+
     }
+
+    /**
+     * Find the closest point pairs, using the brute force method, basically 
+     * loop through all the points and check for the minimal distance and
+     * save the points in an ArrayList.
+     * @return an array list of the closest pair of points ( 2 elements in the list )
+     */
 
     public static ArrayList<MultiDimPoint> bruteForce(ArrayList<MultiDimPoint> points)
     {
